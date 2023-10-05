@@ -4,6 +4,7 @@
 //
 
 import SwiftUI
+import Toast
 import UniformTypeIdentifiers
 
 // MARK: - AboutView
@@ -28,7 +29,14 @@ struct AboutView: View {
                         Text(verbatim: "Git commit")
                         Spacer()
                         Text(verbatim: gitShortSha).onTapGesture {
+                            let toast = Toast.default(
+                                image: UIImage(systemName: "clipboard")!,
+                                title: "Copied Git SHA"
+                            )
+
                             UIPasteboard.general.string = gitFullSha
+
+                            toast.show()
                         }
                     }
                 }

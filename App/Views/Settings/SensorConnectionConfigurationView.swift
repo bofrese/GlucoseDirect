@@ -4,6 +4,7 @@
 //
 
 import SwiftUI
+import Toast
 
 struct SensorConnectionConfigurationView: View {
     @EnvironmentObject var store: DirectStore
@@ -30,7 +31,15 @@ struct SensorConnectionConfigurationView: View {
                             }
                         }
                     }
-                    .onSubmit(of: .text, {() -> Void in store.dispatch(.connectConnection)})
+                    .onSubmit(of: .text, {() -> Void in
+                        let toast = Toast.default(
+                            image: UIImage(systemName: "person.crop.circle.badge.checkmark")!,
+                            title: "Logged into LibreLinkUp"
+                        )
+
+                        store.dispatch(.connectConnection)
+                        toast.show()
+                    })
                 },
                 header: {
                     Label("Connection settings", systemImage: "app.connected.to.app.below.fill")

@@ -205,6 +205,7 @@
 		E2FCAC732707438A00FE1CBF /* DirectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FCAC6F2707438A00FE1CBF /* DirectStore.swift */; };
 		E2FCAC7D270743B100FE1CBF /* sensor.png in Resources */ = {isa = PBXBuildFile; fileRef = E2FCAC77270743B100FE1CBF /* sensor.png */; };
 		E2FCAC87270743E200FE1CBF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E2FCAC89270743E200FE1CBF /* Localizable.strings */; };
+		F45270822ACE690C00DB1611 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = F45270812ACE690C00DB1611 /* Toast */; };
 		F46B78C02A59B3850008A97E /* GitVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46B78BF2A59B3850008A97E /* GitVersion.swift */; };
 		F46B78C12A59B3850008A97E /* GitVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46B78BF2A59B3850008A97E /* GitVersion.swift */; };
 		F4B713FA2ABE9AA600C0BCDE /* SecureInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B713F92ABE9AA600C0BCDE /* SecureInputView.swift */; };
@@ -452,6 +453,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F45270822ACE690C00DB1611 /* Toast in Frameworks */,
 				101B53852A3BC0210088B4BD /* GRDB in Frameworks */,
 				E251653E28D7BFE900922898 /* ActivityKit.framework in Frameworks */,
 				E27BBA8027AD7DDA00A6B8EE /* HealthKit.framework in Frameworks */,
@@ -937,6 +939,7 @@
 			name = GlucoseDirectApp;
 			packageProductDependencies = (
 				101B53842A3BC0210088B4BD /* GRDB */,
+				F45270812ACE690C00DB1611 /* Toast */,
 			);
 			productName = GlucoseDirect;
 			productReference = E20B853A266F4A9800AA4224 /* GlucoseDirectApp.app */;
@@ -1005,6 +1008,7 @@
 			mainGroup = E20B8531266F4A9800AA4224;
 			packageReferences = (
 				101B53832A3BC0210088B4BD /* XCRemoteSwiftPackageReference "GRDB" */,
+				F45270802ACE690C00DB1611 /* XCRemoteSwiftPackageReference "toast-swift" */,
 			);
 			productRefGroup = E20B853B266F4A9800AA4224 /* Products */;
 			projectDirPath = "";
@@ -1082,7 +1086,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#/bin/sh\n\nFILENAME=\"GitVersion.swift\"\nGIT_SHORT_SHA=$(git rev-parse --short HEAD)\ngit diff --quiet || GIT_SHORT_SHA=\"${GIT_SHORT_SHA} (*)\"\nGIT_FULL_SHA=$(git rev-parse HEAD)\nCOMMIT_DATE=$(git log -n 1 HEAD --date=format:'%Y-%m-%dT%H:%M:%S%z' --pretty=format:\"%cd\")\n\nfilesource=\"// DO NOT EDIT\\n// THIS IS A MACHINE GENERATED FILE\\n//\\n//  ${FILENAME}\\n//\\n//  Commit Date: ${COMMIT_DATE}\\n//\\n\\n#if !RELEASE\\nlet gitShortSha = \\\"${GIT_SHORT_SHA}\\\"\\nlet gitFullSha = \\\"${GIT_FULL_SHA}\\\"\\n\\n#else\\nlet gitShortSha = \\\"\\\"\\nlet gitFullSha = \\\"\\\"\\n#endif\"\n\ncd $SRCROOT/App\n\ntouch ${FILENAME}\necho \"$filesource\" > ${FILENAME}\n";
+			shellScript = "#/bin/sh\n\nFILENAME=\"GitVersion.swift\"\nGIT_SHORT_SHA=$(git rev-parse --short HEAD)\ngit diff --quiet || GIT_SHORT_SHA=\"${GIT_SHORT_SHA} *\"\nGIT_FULL_SHA=$(git rev-parse HEAD)\nCOMMIT_DATE=$(git log -n 1 HEAD --date=format:'%Y-%m-%dT%H:%M:%S%z' --pretty=format:\"%cd\")\n\nfilesource=\"// DO NOT EDIT\\n// THIS IS A MACHINE GENERATED FILE\\n//\\n//  ${FILENAME}\\n//\\n//  Commit Date: ${COMMIT_DATE}\\n//\\n\\n#if !RELEASE\\nlet gitShortSha = \\\"${GIT_SHORT_SHA}\\\"\\nlet gitFullSha = \\\"${GIT_FULL_SHA}\\\"\\n\\n#else\\nlet gitShortSha = \\\"\\\"\\nlet gitFullSha = \\\"\\\"\\n#endif\"\n\ncd $SRCROOT/App\n\ntouch ${FILENAME}\necho \"$filesource\" > ${FILENAME}\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1646,6 +1650,14 @@
 				version = 6.15.0;
 			};
 		};
+		F45270802ACE690C00DB1611 /* XCRemoteSwiftPackageReference "toast-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BastiaanJansen/toast-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1653,6 +1665,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 101B53832A3BC0210088B4BD /* XCRemoteSwiftPackageReference "GRDB" */;
 			productName = GRDB;
+		};
+		F45270812ACE690C00DB1611 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F45270802ACE690C00DB1611 /* XCRemoteSwiftPackageReference "toast-swift" */;
+			productName = Toast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
