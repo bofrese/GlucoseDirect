@@ -158,7 +158,7 @@ class LibreLinkUpConnection: SensorBluetoothConnection, IsSensor {
         "User-Agent": "Mozilla/5.0",
         "Content-Type": "application/json",
         "product": "llu.ios",
-        "version": "4.7.0",
+        "version": "4.8.0",
         "Accept-Encoding": "gzip, deflate, br",
         "Connection": "keep-alive",
         "Pragma": "no-cache",
