@@ -76,6 +76,7 @@ enum DirectAction {
     case setNormalGlucoseNotification(enabled: Bool)
     case setAlarmGlucoseNotification(enabled: Bool)
     case setGlucoseLiveActivity(enabled: Bool)
+    case setNotifyAlarms(enabled: Bool)
     case setGlucoseUnit(unit: GlucoseUnit)
     case setHighGlucoseAlarmSound(sound: NotificationSound)
     case setLowGlucoseAlarmSound(sound: NotificationSound)

@@ -36,6 +36,7 @@ struct GlucoseSettingsView: View {
                 }
                 
                 Toggle("Glucose read aloud", isOn: readGlucose).toggleStyle(SwitchToggleStyle(tint: Color.ui.accent))
+                Toggle("Notify alarms", isOn: notifyAlarms).toggleStyle(SwitchToggleStyle(tint: Color.ui.accent))
             },
             header: {
                 Label("Glucose settings", systemImage: "cross.case")
@@ -73,6 +74,13 @@ struct GlucoseSettingsView: View {
         )
     }
 
+    private var notifyAlarms: Binding<Bool> {
+        Binding(
+            get: { store.state.notifyAlarms },
+            set: { store.dispatch(.setNotifyAlarms(enabled: $0)) }
+        )
+    }
+    
     private var selectedGlucoseUnit: Binding<String> {
         Binding(
             get: { store.state.glucoseUnit.rawValue },
