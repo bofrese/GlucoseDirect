@@ -98,6 +98,12 @@ func directReducer(state: inout DirectState, action: DirectAction) {
     case .setAlarmLow(lowerLimit: let lowerLimit):
         state.alarmLow = lowerLimit
         
+    case .setAlarmHighSleep(upperLimit: let upperLimit):
+        state.alarmHighSleep = upperLimit
+        
+    case .setAlarmLowSleep(lowerLimit: let lowerLimit):
+        state.alarmLowSleep = lowerLimit
+        
     case .setAlarmVolume(volume: let volume):
         state.alarmVolume = volume
         
@@ -172,6 +178,9 @@ func directReducer(state: inout DirectState, action: DirectAction) {
     case .setNormalGlucoseNotification(enabled: let enabled):
         state.normalGlucoseNotification = enabled
         
+    case .setEnableSleepMode(enabled: let enabled):
+        state.enableSleepMode = enabled
+        
     case .setAlarmGlucoseNotification(enabled: let enabled):
         state.alarmGlucoseNotification = enabled
         
@@ -225,6 +234,12 @@ func directReducer(state: inout DirectState, action: DirectAction) {
         
     case .setMinSelectedDate(minSelectedDate: let minSelectedDate):
         state.minSelectedDate = min(minSelectedDate, state.minSelectedDate)
+        
+    case .setBeginSleepTime(beginSleepTime:let beginSleepTime):
+        state.beginSleepTime = beginSleepTime
+        
+    case .setEndSleepTime(endSleepTime:let endSleepTime):
+        state.endSleepTime = endSleepTime
         
     case .setSelectedDate(selectedDate: let date):
         if let date = date, date < Date().startOfDay {
