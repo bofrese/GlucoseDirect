@@ -24,7 +24,7 @@ private enum Keys: String {
     case normalGlucoseNotification = "glucose-direct.settings.normal-glucose-notification"
     case alarmGlucoseNotification = "glucose-direct.settings.alarm-glucose-notification"
     case glucoseLiveActivity = "glucose-direct.settings.glucose-live-activity"
-    case notifyAlarms = "libre-direct.settings.glucose-notify-alarms"
+    case notifyAlarms = "glucose-direct.settings.glucose-notify-alarms"
     case glucoseUnit = "glucose-direct.settings.glucose-unit"
     case highGlucoseAlarmSound = "glucose-direct.settings.high-glucose-alarm-sound"
     case ignoreMute = "glucose-direct.settings.ignore-mute"
@@ -300,8 +300,7 @@ extension UserDefaults {
             set(newValue, forKey: Keys.glucoseLiveActivity.rawValue)
         }
     }
-    
-    
+
     var notifyAlarms: Bool {
          get {
              if object(forKey: Keys.notifyAlarms.rawValue) != nil {
@@ -314,7 +313,7 @@ extension UserDefaults {
              set(newValue, forKey: Keys.notifyAlarms.rawValue)
          }
      }
- 
+
     var glucoseUnit: GlucoseUnit? {
         get {
             if let glucoseUnitValue = object(forKey: Keys.glucoseUnit.rawValue) as? String {

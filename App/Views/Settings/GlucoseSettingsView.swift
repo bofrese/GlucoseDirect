@@ -80,7 +80,7 @@ struct GlucoseSettingsView: View {
             set: { store.dispatch(.setNotifyAlarms(enabled: $0)) }
         )
     }
-    
+
     private var selectedGlucoseUnit: Binding<String> {
         Binding(
             get: { store.state.glucoseUnit.rawValue },

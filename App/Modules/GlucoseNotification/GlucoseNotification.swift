@@ -140,37 +140,37 @@ private class GlucoseNotificationService {
     func setLowGlucoseAlarm(sound: NotificationSound, volume: Float, ignoreMute: Bool) {
         DirectNotifications.shared.playSound(sound: sound, volume: volume, ignoreMute: ignoreMute)
     }
-        
+
     func setLowGlucoseAlarmNotification(sound: NotificationSound, glucose: SensorGlucose, glucoseUnit: GlucoseUnit) {
             DirectNotifications.shared.ensureCanSendNotification { state in
                 DirectLog.info("Glucose low alert, state: \(state)")
-                
+
                 UNUserNotificationCenter.current().getPendingNotificationRequests { pendingAlarms in
                     let hasPendingAlarm = pendingAlarms.filter {
                      $0.identifier == Identifier.sensorGlucoseAlarm.rawValue
                      }.count > 0
-                     
+
                      guard !hasPendingAlarm else {
-                     return
+                        return
                      }
-                    
+
                     let notification = UNMutableNotificationContent()
-                    
+
                     if sound != .none, state == .sound {
                         notification.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "\(sound.rawValue).aiff"))
                     } else {
                         notification.sound = .none
                     }
-                    
+
                     let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-                    
+
                     notification.interruptionLevel = .timeSensitive
                     notification.title = LocalizedString("Alarm, low blood glucose")
                     notification.body = String(format: LocalizedString("Your glucose %1$@ (%2$@) is dangerously low. With sweetened drinks or dextrose, blood glucose levels can often return to normal."),
                                                glucose.glucoseValue.asGlucose(glucoseUnit: glucoseUnit, withUnit: true),
                                                glucose.minuteChange?.asMinuteChange(glucoseUnit: glucoseUnit) ?? "?"
                     )
-                    
+
                     DirectNotifications.shared.addNotification(identifier: Identifier.sensorGlucoseAlarm.rawValue, content: notification, trigger: trigger)
                 }
             }
@@ -208,7 +208,7 @@ private class GlucoseNotificationService {
     func setHighGlucoseAlarm(sound: NotificationSound, volume: Float, ignoreMute: Bool) {
         DirectNotifications.shared.playSound(sound: sound, volume: volume, ignoreMute: ignoreMute)
     }
-       
+
     func setHighGlucoseAlarmNotification(sound: NotificationSound, glucose: SensorGlucose, glucoseUnit: GlucoseUnit) {
         DirectNotifications.shared.ensureCanSendNotification { state in
             DirectLog.info("Glucose high alert, state: \(state)")
@@ -229,7 +229,7 @@ private class GlucoseNotificationService {
                 } else {
                     notification.sound = .none
                 }
-                
+
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
 
                 notification.interruptionLevel = .timeSensitive
@@ -238,7 +238,7 @@ private class GlucoseNotificationService {
                                            glucose.glucoseValue.asGlucose(glucoseUnit: glucoseUnit, withUnit: true),
                                            glucose.minuteChange?.asMinuteChange(glucoseUnit: glucoseUnit) ?? "?"
                 )
-                
+
                 DirectNotifications.shared.addNotification(identifier: Identifier.sensorGlucoseAlarm.rawValue, content: notification, trigger: trigger)
             }
         }
