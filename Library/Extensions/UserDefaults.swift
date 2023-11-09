@@ -99,7 +99,7 @@ extension UserDefaults {
             set(newValue, forKey: Keys.alarmLow.rawValue)
         }
     }
-    
+
     var alarmHighSleep: Int {
         get {
             if object(forKey: Keys.alarmHighSleep.rawValue) != nil {
@@ -125,7 +125,7 @@ extension UserDefaults {
             set(newValue, forKey: Keys.alarmLowSleep.rawValue)
         }
     }
-    
+
     var alarmVolume: Float {
         get {
             if object(forKey: Keys.alarmVolume.rawValue) != nil {

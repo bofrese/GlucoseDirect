@@ -143,32 +143,27 @@ extension DirectState {
             let now = Date().timeIntervalSince(Date().startOfDay)
             let begin = beginSleepTime.timeIntervalSince(beginSleepTime.startOfDay)
             let end = endSleepTime.timeIntervalSince(endSleepTime.startOfDay)
-            
+
             if begin < end {
                 return begin <= now && now <= end
-            }
-            else {
+            } else {
                 return begin <= now || now <= end
             }
-        }
-        else {
+        } else {
             return false
         }
     }
-    
+
     func isAlarm(glucoseValue: Int) -> Alarm {
         if isSleepTime() {
             if glucoseValue < alarmLowSleep {
                 return .lowAlarm
-                
             } else if glucoseValue > alarmHighSleep {
                 return .highAlarm
             }
-        }
-        else {
+        } else {
             if glucoseValue < alarmLow {
                 return .lowAlarm
-                
             } else if glucoseValue > alarmHigh {
                 return .highAlarm
             }

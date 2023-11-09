@@ -433,19 +433,17 @@ struct ChartView: View {
             let now = Date().timeIntervalSince(Date().startOfDay)
             let begin = store.state.beginSleepTime.timeIntervalSince(store.state.beginSleepTime.startOfDay)
             let end = store.state.endSleepTime.timeIntervalSince(store.state.endSleepTime.startOfDay)
-            
+
             if begin < end {
                 return begin <= now && now <= end
-            }
-            else {
+            } else {
                 return begin <= now || now <= end
             }
-        }
-        else {
+        } else {
             return false
         }
     }
-    
+
     private enum Config {
         static let chartID = "chart"
         static let cornerRadius: CGFloat = 20
@@ -527,7 +525,7 @@ struct ChartView: View {
 
         return 300
     }
-    
+
     private var enableSleepMode: Bool {
         return store.state.enableSleepMode
     }
@@ -535,8 +533,7 @@ struct ChartView: View {
     private var alarmLow: Double {
         if isSleepTime() {
             convertToRequired(mgdLValue: store.state.alarmLowSleep)
-        }
-        else {
+        } else {
             convertToRequired(mgdLValue: store.state.alarmLow)
         }
     }
@@ -544,8 +541,7 @@ struct ChartView: View {
     private var alarmHigh: Double {
         if isSleepTime() {
             convertToRequired(mgdLValue: store.state.alarmHighSleep)
-        }
-        else {
+        } else {
             convertToRequired(mgdLValue: store.state.alarmHigh)
         }
     }
