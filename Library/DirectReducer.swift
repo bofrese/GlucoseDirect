@@ -177,6 +177,9 @@ func directReducer(state: inout DirectState, action: DirectAction) {
         
     case .setGlucoseLiveActivity(enabled: let enabled):
         state.glucoseLiveActivity = enabled
+
+    case .setNotifyAlarms(enabled: let enabled):
+        state.notifyAlarms = enabled
         
     case .setGlucoseUnit(unit: let unit):
         state.glucoseUnit = unit

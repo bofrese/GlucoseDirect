@@ -57,6 +57,7 @@ struct AppState: DirectState {
         self.normalGlucoseNotification = UserDefaults.standard.normalGlucoseNotification
         self.alarmGlucoseNotification = UserDefaults.standard.alarmGlucoseNotification
         self.glucoseLiveActivity = UserDefaults.standard.glucoseLiveActivity
+        self.notifyAlarms = UserDefaults.standard.notifyAlarms
         self.ignoreMute = UserDefaults.standard.ignoreMute
         self.glucoseUnit = UserDefaults.shared.glucoseUnit ?? .mgdL
         self.highGlucoseAlarmSound = UserDefaults.standard.highGlucoseAlarmSound
@@ -126,6 +127,7 @@ struct AppState: DirectState {
     var normalGlucoseNotification: Bool { didSet { UserDefaults.standard.normalGlucoseNotification = normalGlucoseNotification } }
     var alarmGlucoseNotification: Bool { didSet { UserDefaults.standard.alarmGlucoseNotification = alarmGlucoseNotification } }
     var glucoseLiveActivity: Bool { didSet { UserDefaults.standard.glucoseLiveActivity = glucoseLiveActivity } }
+    var notifyAlarms: Bool { didSet { UserDefaults.standard.notifyAlarms = notifyAlarms } }
     var glucoseUnit: GlucoseUnit { didSet { UserDefaults.shared.glucoseUnit = glucoseUnit } }
     var highGlucoseAlarmSound: NotificationSound { didSet { UserDefaults.standard.highGlucoseAlarmSound = highGlucoseAlarmSound } }
     var ignoreMute: Bool { didSet { UserDefaults.standard.ignoreMute = ignoreMute } }
