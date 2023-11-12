@@ -31,26 +31,20 @@ struct GlucoseSettingsView: View {
                 Toggle("Sleep mode", isOn: enableSleepMode).toggleStyle(SwitchToggleStyle(tint: Color.ui.accent))
 
                 if enableSleepMode.wrappedValue {
-                    DatePicker("Sleep start time",
+                    DatePicker("Bed time",
                                selection: beginSleepTime,
                                displayedComponents: .hourAndMinute
                     )
                     .onAppear {
                         UIDatePicker.appearance().minuteInterval = 15
                     }
-                    .onDisappear {
-                        UIDatePicker.appearance().minuteInterval = 1
-                    }
 
-                    DatePicker("Sleep end time",
+                    DatePicker("Wake up time",
                                selection: endSleepTime,
                                displayedComponents: .hourAndMinute
                     )
                     .onAppear {
                         UIDatePicker.appearance().minuteInterval = 15
-                    }
-                    .onDisappear {
-                        UIDatePicker.appearance().minuteInterval = 1
                     }
 
                     NumberSelectorView(key: LocalizedString("Lower limit"), value: store.state.alarmLowSleep, step: 5, max: store.state.alarmHighSleep, displayValue: store.state.alarmLowSleep.asGlucose(glucoseUnit: store.state.glucoseUnit, withUnit: true)) { value in
