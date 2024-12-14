@@ -11,6 +11,8 @@ private enum Keys: String {
     case appSerial = "glucose-direct.settings.app-serial"
     case alarmHigh = "glucose-direct.settings.alarm-high"
     case alarmLow = "glucose-direct.settings.alarm-low"
+    case alarmHighSleep = "glucose-direct.settings.alarm-high-sleep"
+    case alarmLowSleep = "glucose-direct.settings.alarm-low-sleep"
     case alarmVolume = "glucose-direct.settings.alarm-volume"
     case appleHealthSync = "glucose-direct.settings.apple-health-export"
     case bellmanAlarm = "glucose-direct.settings.bellman-alarm"
@@ -22,8 +24,10 @@ private enum Keys: String {
     case customCalibration = "glucose-direct.settings.custom-calibration"
     case expiringAlarmSound = "glucose-direct.settings.expiring-alarm-sound"
     case normalGlucoseNotification = "glucose-direct.settings.normal-glucose-notification"
+    case enableSleepMode = "glucose-direct.settings.enable-sleep-mode"
     case alarmGlucoseNotification = "glucose-direct.settings.alarm-glucose-notification"
     case glucoseLiveActivity = "glucose-direct.settings.glucose-live-activity"
+    case notifyAlarms = "glucose-direct.settings.glucose-notify-alarms"
     case glucoseUnit = "glucose-direct.settings.glucose-unit"
     case highGlucoseAlarmSound = "glucose-direct.settings.high-glucose-alarm-sound"
     case ignoreMute = "glucose-direct.settings.ignore-mute"
@@ -93,6 +97,32 @@ extension UserDefaults {
         }
         set {
             set(newValue, forKey: Keys.alarmLow.rawValue)
+        }
+    }
+
+    var alarmHighSleep: Int {
+        get {
+            if object(forKey: Keys.alarmHighSleep.rawValue) != nil {
+                return integer(forKey: Keys.alarmHighSleep.rawValue)
+            }
+
+            return 180
+        }
+        set {
+            set(newValue, forKey: Keys.alarmHighSleep.rawValue)
+        }
+    }
+
+    var alarmLowSleep: Int {
+        get {
+            if object(forKey: Keys.alarmLowSleep.rawValue) != nil {
+                return integer(forKey: Keys.alarmLowSleep.rawValue)
+            }
+
+            return 80
+        }
+        set {
+            set(newValue, forKey: Keys.alarmLowSleep.rawValue)
         }
     }
 
@@ -274,6 +304,19 @@ extension UserDefaults {
         }
     }
 
+    var enableSleepMode: Bool {
+        get {
+            if object(forKey: Keys.enableSleepMode.rawValue) != nil {
+                return bool(forKey: Keys.enableSleepMode.rawValue)
+            }
+
+            return true
+        }
+        set {
+            set(newValue, forKey: Keys.enableSleepMode.rawValue)
+        }
+    }
+
     var alarmGlucoseNotification: Bool {
         get {
             if object(forKey: Keys.alarmGlucoseNotification.rawValue) != nil {
@@ -287,7 +330,7 @@ extension UserDefaults {
         }
     }
 
-    var glucoseLiveActivity: Bool {
+   var glucoseLiveActivity: Bool {
         get {
             if object(forKey: Keys.glucoseLiveActivity.rawValue) != nil {
                 return bool(forKey: Keys.glucoseLiveActivity.rawValue)
@@ -299,6 +342,19 @@ extension UserDefaults {
             set(newValue, forKey: Keys.glucoseLiveActivity.rawValue)
         }
     }
+
+    var notifyAlarms: Bool {
+         get {
+             if object(forKey: Keys.notifyAlarms.rawValue) != nil {
+                 return bool(forKey: Keys.notifyAlarms.rawValue)
+             }
+
+             return false
+         }
+         set {
+             set(newValue, forKey: Keys.notifyAlarms.rawValue)
+         }
+     }
 
     var glucoseUnit: GlucoseUnit? {
         get {
